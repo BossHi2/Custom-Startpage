@@ -1,15 +1,58 @@
 body{
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow:hidden;
     background-color: #233D4D;
     color: #EAECF0;
-    
+}
+.content{
+    height: 100vh;
+    width: 100vw;
+    padding: 3rem;
+}
+#noice{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+.ascii-wave-bg{
+    bottom: 0px;
+    position: absolute;
+}
+.wave{
+    position: relative;
+    bottom: -55px;
+    line-height: 0;
+    height: max-content;
+    width: max-content;
+}
+.goal{
+    position: relative;
+    bottom: 300px;
+}
+.tracker{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 330px;
+}
+.coding-mode{
+    position: absolute;
+    right: calc(0px + 3rem);
+    width: max-content;
 }
 
-.ascii-wave-bg{
-    bottom: 200px;
-    position: absolute;
+button{
+    line-height: 0;
+    box-shadow: none;
+}
+button:hover{
+    cursor: pointer;
+    color: #FE7F2D;
+}
+.bookmarks:hover h2::before{
+    content: attr(data-hover);
 }
 
 .font{

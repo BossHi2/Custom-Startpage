@@ -3,26 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Start Page</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#111e25">
 </head>
 <body>
+
+    <svg id="noice">
+        <filter id="noise-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="1.34" numOctaves="4" stitchTiles="stitch"></feTurbulence>
+            <feColorMatrix type="saturate" values="0"></feColorMatrix>
+            <feComponentTransfer>
+                <feFuncR type="linear" slope="0.46"></feFuncR>
+                <feFuncG type="linear" slope="0.46"></feFuncG>
+                <feFuncB type="linear" slope="0.46"></feFuncB>
+                <feFuncA type="linear" slope="0.3"></feFuncA>
+            </feComponentTransfer>
+            <feComponentTransfer>
+                <feFuncR type="linear" slope="1.47" intercept="-0.23"/>
+                <feFuncG type="linear" slope="1.47" intercept="-0.23"/>
+                <feFuncB type="linear" slope="1.47" intercept="-0.23"/>
+            </feComponentTransfer>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noise-filter)"></rect>
+    </svg>
     <div class="ascii-wave-bg">
         
-        <h1>⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅</h1>
+        <h1 class="wave">⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅</h1>
+        <h1 class="goal">┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄</h1>
     </div>
     
 <div class="content">
-    <button onclick="
-        window.open('https://codeforces.com', '_blank'); 
-        window.open('https://ide.usaco.guide', '_blank');
-    ">
-        <h1 class="font">Competitive Coding</h1>
+    <h2 class="font tracker">0 / 2 hrs</h2>
+    <button class="coding-mode" onclick="toggleCodingMode();">
+        <h1 class="font">Enter Coding Mode</h1>
     </button>
-    
+
+    <button class="bookmarks" onclick="window.open('https://katyisd.instructure.com/', '_blank');">
+        <h2 class="font" data-hover=">">> Canvas</h2>
+    </button>
+    <br>
+    <button class="bookmarks" onclick="window.open('https://mail.google.com/mail/u/0/#inbox', '_blank');">
+        <h2 class="font" data-hover=">">> Gmail</h2>
+    </button>
+    <br>
+    <button class="bookmarks" onclick="window.open('https://homeaccess.katyisd.org/HomeAccess/Account/LogOn?ReturnUrl=%2fHomeAccess', '_blank');">
+        <h2 class="font" data-hover=">">> HAC</h2>
+    </button>
     
 </div>
 
