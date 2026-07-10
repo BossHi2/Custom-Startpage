@@ -8,9 +8,13 @@ var waveArray = Array.from(basePattern);
 if(localStorage.getItem("isInCodingMode")){
 
 } else{
-    localStorage.setItem("isInCodingMode", false)
+    localStorage.setItem("isInCodingMode", "false")
 }
-var startTime = 0
+if(localStorage.getItem("startTime")){
+
+} else{
+    localStorage.setItem("startTime", "0")
+}
 var shouldResetTracker = false
 var today = new Date().toDateString()
 var waveInterval = null
@@ -28,12 +32,12 @@ if(localStorage.getItem("savedDate")){
 
 if(localStorage.getItem("currCodingTime")){
     if(shouldResetTracker){
-        localStorage.setItem("currCodingTime", 0)
+        localStorage.setItem("currCodingTime", "0")
     }
     trackerText.innerHTML = (Math.round((localStorage.getItem("currCodingTime")/60) * 10) / 10) + " / 2 hrs";
     wave.style.bottom = -55 + (2.5 * localStorage.getItem("currCodingTime")) + "px"
 } else{
-    localStorage.setItem("currCodingTime", 0)
+    localStorage.setItem("currCodingTime", "0")
 }
 
 function animateWave() {
@@ -51,7 +55,7 @@ waveInterval = setInterval(animateWave, 2000);
 
 
 
-if(localStorage.getItem("isInCodingMode") == true){
+if(localStorage.getItem("isInCodingMode") === "true"){
     codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Exit Coding Mode"
     document.body.style.backgroundColor = "#4A4A4A";
     clearInterval(waveInterval)
@@ -65,30 +69,30 @@ if(localStorage.getItem("isInCodingMode") == true){
 
 
 function toggleCodingMode(){
-    if(localStorage.getItem("isInCodingMode") == true){
-        localStorage.setItem("isInCodingMode", false)
+    if(localStorage.getItem("isInCodingMode") === "true"){
+        localStorage.setItem("isInCodingMode", "false")
     } else{
-        localStorage.setItem("isInCodingMode", true)
+        localStorage.setItem("isInCodingMode", "true")
     }
 
-    if(localStorage.getItem("isInCodingMode") == true){
+    if(localStorage.getItem("isInCodingMode") === "true"){
         codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Exit Coding Mode"
         document.body.style.backgroundColor = "#4A4A4A";
         window.open('https://codeforces.com', '_blank');
         window.open('https://ide.usaco.guide', '_blank');
-        startTime = Date.now()
+        localStorage.setItem("startTime", Date.now())
         clearInterval(waveInterval)
         wave.style.color = "#FE7F2D"
     } else{
         document.body.style.backgroundColor = "#233D4D";
         codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Enter Coding Mode"
         waveInterval = setInterval(animateWave, 500);
-        var minutesPassed = Math.floor((Date.now()-startTime) / 60000); 
+        var minutesPassed = Math.floor((Date.now()-localStorage.getItem("startTime")) / 60000); 
         localStorage.setItem("currCodingTime", Number(localStorage.getItem("currCodingTime")) + minutesPassed)
         trackerText.innerHTML = (Math.round((localStorage.getItem("currCodingTime")/60) * 10) / 10) + " / 2 hrs";
         wave.style.bottom = -55 + (2.5 * localStorage.getItem("currCodingTime")) + "px"
         wave.style.color = "#EAECF0"
-        startTime = 0
+        localStorage.setItem("startTime", "0")
     }
 }
 
