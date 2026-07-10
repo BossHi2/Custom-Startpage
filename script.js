@@ -96,9 +96,7 @@ document.addEventListener('keydown', (e) => {
 
       searchParent.classList.add('active');
 
-      if (e.key.length === 1) {
-            searchInput.value = e.key;
-        }
+      searchInput.value = e.key;
 
       requestAnimationFrame(() => {
         searchInput.focus();
