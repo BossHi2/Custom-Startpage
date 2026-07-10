@@ -107,7 +107,7 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     if(searchInput.value.substring(0,1) != "/"){
-        window.location.href="https://www.google.com/search"
+        window.location.href="https://www.google.com/search?q=" + encodeURIComponent(searchInput.value);
       } else{
         window.location.href = "https://" + searchInput.value.substring(1).trim().toLowerCase() + ".com"
       }
