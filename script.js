@@ -5,7 +5,11 @@ const basePattern = "⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅
 
 
 var waveArray = Array.from(basePattern);
-var isInCodingMode = false
+if(localStorage.getItem("isInCodingMode")){
+
+} else{
+    localStorage.setItem("isInCodingMode", false)
+}
 var startTime = 0
 var shouldResetTracker = false
 var today = new Date().toDateString()
@@ -47,10 +51,27 @@ waveInterval = setInterval(animateWave, 2000);
 
 
 
-function toggleCodingMode(){
-    isInCodingMode = !isInCodingMode
+if(localStorage.getItem("isInCodingMode") == true){
+    codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Exit Coding Mode"
+    document.body.style.backgroundColor = "#4A4A4A";
+    clearInterval(waveInterval)
+    wave.style.color = "#FE7F2D"
+} else{
+    document.body.style.backgroundColor = "#233D4D";
+    codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Enter Coding Mode"
+    waveInterval = setInterval(animateWave, 500);
+    wave.style.color = "#EAECF0"
+}
 
-    if(isInCodingMode == true){
+
+function toggleCodingMode(){
+    if(localStorage.getItem("isInCodingMode") == "true"){
+        localStorage.setItem("isInCodingMode", false)
+    } else{
+        localStorage.setItem("isInCodingMode", true)
+    }
+
+    if(localStorage.getItem("isInCodingMode") == true){
         codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Exit Coding Mode"
         document.body.style.backgroundColor = "#4A4A4A";
         window.open('https://codeforces.com', '_blank');
@@ -63,7 +84,7 @@ function toggleCodingMode(){
         codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Enter Coding Mode"
         waveInterval = setInterval(animateWave, 500);
         var minutesPassed = Math.floor((Date.now()-startTime) / 60000); 
-        localStorage.setItem("currCodingTime", localStorage.getItem("currCodingTime") + minutesPassed)
+        localStorage.setItem("currCodingTime", Number(localStorage.getItem("currCodingTime")) + minutesPassed)
         trackerText.innerHTML = (Math.round((localStorage.getItem("currCodingTime")/60) * 10) / 10) + " / 2 hrs";
         wave.style.bottom = -55 + (2.5 * localStorage.getItem("currCodingTime")) + "px"
         wave.style.color = "#EAECF0"
