@@ -88,6 +88,7 @@ document.addEventListener('keydown', (e) => {
 
       searchInput.value = e.key;
 
+      
       requestAnimationFrame(() => {
         searchInput.focus();
       });
@@ -95,13 +96,22 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('keydown', (e) => {
     if (!searchParent.classList.contains('active')) return;
+    
 
     if (e.key === 'Escape') {
-    closeSearch();
+        closeSearch();
     }
 });
 
-searchForm.addEventListener('submit', () => {
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    if(searchInput.value.substring(0,1) != "/"){
+        window.location.href="https://www.google.com/search"
+      } else{
+        window.location.href = "https://" + searchInput.value.substring(1).trim().toLowerCase() + ".com"
+      }
+
     setTimeout(closeSearch, 100);
 });
 
