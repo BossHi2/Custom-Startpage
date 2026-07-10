@@ -41,7 +41,7 @@ function animateWave() {
     wave.innerHTML = currentWaveString
     
 }
-waveInterval = setInterval(animateWave, 500);
+waveInterval = setInterval(animateWave, 2000);
 
 
 
@@ -79,3 +79,46 @@ function toggleCodingMode(){
 function trackCodingTime(){
     timeElapsed = Date.now() - startTime
 }
+
+
+const searchParent = document.getElementsByClassName("search-bar")[0]
+const searchInput = document.getElementsByClassName("search-input")[0]
+const searchForm = document.getElementsByClassName("search-form")[0]
+
+document.addEventListener('keydown', (e) => {
+      if (searchParent.classList.contains('active')) return;
+
+      if (e.key === 'Control' || e.key === 'Alt' || e.key === 'Meta' || e.key === 'Shift' || e.key === "Space") return;
+
+      if (e.key.startsWith('F') && !isNaN(e.key.substring(1))) return;
+
+      if (e.key === 'Escape' || e.key === 'Tab' || e.key === 'Enter') return;
+
+      searchParent.classList.add('active');
+
+      if (e.key.length === 1) {
+            searchInput.value = e.key;
+        }
+
+      requestAnimationFrame(() => {
+        searchInput.focus();
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!searchParent.classList.contains('active')) return;
+
+      if (e.key === 'Escape') {
+        closeSearch();
+      }
+    });
+
+    searchForm.addEventListener('submit', () => {
+      setTimeout(closeSearch, 100);
+    });
+
+    function closeSearch() {
+      searchParent.classList.remove('active');
+      searchInput.value = '';
+      searchInput.blur();
+    }

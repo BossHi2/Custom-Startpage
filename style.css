@@ -66,3 +66,28 @@ button{
     border: none;
     color: #EAECF0;
 }
+.active{
+    display:block !important;
+}
+.search-bar{
+    display: none;
+}
+.search-input{
+    background-color: transparent;
+    color: #EAECF0;
+    border: none;
+    border-bottom: 2px solid #FE7F2D;
+    width: 500px;
+    outline: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
