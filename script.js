@@ -65,7 +65,7 @@ if(localStorage.getItem("isInCodingMode") == true){
 
 
 function toggleCodingMode(){
-    if(localStorage.getItem("isInCodingMode") == "true"){
+    if(localStorage.getItem("isInCodingMode") == true){
         localStorage.setItem("isInCodingMode", false)
     } else{
         localStorage.setItem("isInCodingMode", true)
