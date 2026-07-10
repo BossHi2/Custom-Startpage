@@ -6,10 +6,11 @@ const basePattern = "⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅ॱ˙˙ॱ⋅.˳˳.⋅⋅
 
 var waveArray = Array.from(basePattern);
 var isInCodingMode = false
-var timeElapsed = 0
 var startTime = 0
 var shouldResetTracker = false
 var today = new Date().toDateString()
+var waveInterval = null
+
 if(localStorage.getItem("savedDate")){
     
     if(localStorage.getItem("savedDate") !== today){
@@ -31,8 +32,6 @@ if(localStorage.getItem("currCodingTime")){
     localStorage.setItem("currCodingTime", 0)
 }
 
-var trackerInterval = null
-var waveInterval = null
 function animateWave() {
     let lastChar = waveArray.pop();
     waveArray.unshift(lastChar);
@@ -59,27 +58,18 @@ function toggleCodingMode(){
         startTime = Date.now()
         clearInterval(waveInterval)
         wave.style.color = "#FE7F2D"
-        trackerInterval = setInterval(trackCodingTime(), 60000)
     } else{
         document.body.style.backgroundColor = "#233D4D";
         codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Enter Coding Mode"
-        clearInterval(trackerInterval)
         waveInterval = setInterval(animateWave, 500);
-        var minutesPassed = Math.floor(timeElapsed / 60000); 
+        var minutesPassed = Math.floor((Date.now()-startTime) / 60000); 
         localStorage.setItem("currCodingTime", localStorage.getItem("currCodingTime") + minutesPassed)
         trackerText.innerHTML = (Math.round((localStorage.getItem("currCodingTime")/60) * 10) / 10) + " / 2 hrs";
         wave.style.bottom = -55 + (2.5 * localStorage.getItem("currCodingTime")) + "px"
         wave.style.color = "#EAECF0"
         startTime = 0
-        timeElapsed = 0
     }
 }
-
-
-function trackCodingTime(){
-    timeElapsed = Date.now() - startTime
-}
-
 
 const searchParent = document.getElementsByClassName("search-bar")[0]
 const searchInput = document.getElementsByClassName("search-input")[0]
@@ -101,22 +91,22 @@ document.addEventListener('keydown', (e) => {
       requestAnimationFrame(() => {
         searchInput.focus();
       });
-    });
+});
 
-    document.addEventListener('keydown', (e) => {
-      if (!searchParent.classList.contains('active')) return;
+document.addEventListener('keydown', (e) => {
+    if (!searchParent.classList.contains('active')) return;
 
-      if (e.key === 'Escape') {
-        closeSearch();
-      }
-    });
-
-    searchForm.addEventListener('submit', () => {
-      setTimeout(closeSearch, 100);
-    });
-
-    function closeSearch() {
-      searchParent.classList.remove('active');
-      searchInput.value = '';
-      searchInput.blur();
+    if (e.key === 'Escape') {
+    closeSearch();
     }
+});
+
+searchForm.addEventListener('submit', () => {
+    setTimeout(closeSearch, 100);
+});
+
+function closeSearch() {
+    searchParent.classList.remove('active');
+    searchInput.value = '';
+    searchInput.blur();
+}
