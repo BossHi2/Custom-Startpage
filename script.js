@@ -63,7 +63,6 @@ if(localStorage.getItem("isInCodingMode") === "true"){
 } else{
     document.body.style.backgroundColor = "#233D4D";
     codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Enter Coding Mode"
-    waveInterval = setInterval(animateWave, 500);
     wave.style.color = "#EAECF0"
 }
 
@@ -90,6 +89,7 @@ function toggleCodingMode(){
         localStorage.setItem("currCodingTime", Number(localStorage.getItem("currCodingTime")) + minutesPassed)
         trackerText.innerHTML = (Math.round((localStorage.getItem("currCodingTime")/60) * 10) / 10) + " / 2 hrs";
         wave.style.bottom = -55 + (2.5 * localStorage.getItem("currCodingTime")) + "px"
+        waveInterval = setInterval(animateWave, 2000);
         wave.style.color = "#EAECF0"
         localStorage.setItem("startTime", "0")
     }
