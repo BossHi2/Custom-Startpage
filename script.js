@@ -86,7 +86,6 @@ function toggleCodingMode(){
     } else{
         document.body.style.backgroundColor = "#233D4D";
         codingModeBtn.getElementsByTagName("h1")[0].innerHTML = "Enter Coding Mode"
-        waveInterval = setInterval(animateWave, 500);
         var minutesPassed = Math.floor((Date.now()-localStorage.getItem("startTime")) / 60000); 
         localStorage.setItem("currCodingTime", Number(localStorage.getItem("currCodingTime")) + minutesPassed)
         trackerText.innerHTML = (Math.round((localStorage.getItem("currCodingTime")/60) * 10) / 10) + " / 2 hrs";
